@@ -3,5 +3,8 @@ __pycache__/
 datasets/
 glove/
 venv/
+baseline_large_squad.pt
+baseline_medium_squad.pt
+baseline_small_squad.pt
 *.pt
 *.jsonl.gz
