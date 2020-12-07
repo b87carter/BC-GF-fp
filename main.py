@@ -37,6 +37,12 @@ from model import BaselineReader
 from utils import cuda, search_span_endpoints, unpack
 
 
+squad_train_path = "datasets/squad_train.jsonl.gz"
+squad_dev_path = "datasets/squad_dev.jsonl.gz"
+newsqa_train_path = "datasets/newsqa_dev.jsonl.gz"
+newsqa_dev_path = "datasets/newsqa_dev.jsonl.gz"
+bio_path = "datasets/bioasq.jsonl.gz"
+
 _TQDM_BAR_SIZE = 75
 _TQDM_LEAVE = False
 _TQDM_UNIT = ' batches'
@@ -461,8 +467,24 @@ def main(args):
         print()
 
     # Set up datasets.
-    train_dataset = QADataset(args, args.train_path)
-    dev_dataset = QADataset(args, args.dev_path)
+    train_dataset, dev_dataset = None, None
+    if args.train_path == 'squad':
+        train_dataset = QADataset(args, squad_train_path)
+    elif args.train_path == 'newsqa':
+        train_dataset = QADataset(args, newsqa_train_path)
+    elif args.train_path == 'bioqa':
+        pass # have not yet written code to split bio set
+    elif args.train_path == 'exp':
+        train_dataset = QADataset(args, [squad_train_path, newsqa_train_path])
+
+    if args.dev_path == 'squad':
+        dev_dataset = QADataset(args, squad_dev_path)
+    elif args.dev_path == 'newsqa':
+        dev_dataset = QADataset(args, newsqa_dev_path)
+    elif args.dev_path == 'bioqa':
+        pass # have not yet written code to split bio set
+    if args.dev_path == 'exp':
+        dev_dataset = QADataset(args, [squad_dev_path, newsqa_dev_path])
 
     # Create vocabulary and tokenizer.
     vocabulary = Vocabulary(train_dataset.samples, args.vocab_size)

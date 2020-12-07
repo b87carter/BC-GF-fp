@@ -139,7 +139,12 @@ class QADataset(Dataset):
     """
     def __init__(self, args, path):
         self.args = args
-        self.meta, self.elems = load_dataset(path)
+        if type(path) is list and len(path) == 2:
+            self.meta, self.elems = load_dataset(path[0])
+            meta2, elem2 = load_dataset(path[1])
+            elems.extend(elem2)
+        else:
+            self.meta, self.elems = load_dataset(path)
         self.samples = self._create_samples()
         self.tokenizer = None
         self.batch_size = args.batch_size if 'batch_size' in args else 1
