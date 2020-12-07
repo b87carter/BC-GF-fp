@@ -1,0 +1,10 @@
+python3 main.py \
+    --use_gpu \
+    --model "baseline" \
+    --model_path "baseline_small_squad.pt" \
+    --train_path "squad" \
+    --dev_path "squad" \
+    --output_path "baseline_small_squad_preds.txt" \
+    --hidden_dim 128 \
+    --bidirectional \
+    --do_test
