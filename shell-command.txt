@@ -8,3 +8,17 @@ python3 main.py \
     --hidden_dim 128 \
     --bidirectional \
     --do_test
+
+
+python3 main.py \
+    --use_gpu \
+    --model "baseline" \
+    --model_path "exp_model.pt" \
+    --train_path "exp" \
+    --dev_path "datasets/newsqa_dev.jsonl.gz" \
+    --output_path "exp_predictions.txt" \
+    --hidden_dim 128 \
+    --bidirectional \
+    --epochs 5 \
+    --do_train \
+    --do_test

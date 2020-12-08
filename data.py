@@ -142,7 +142,7 @@ class QADataset(Dataset):
         if type(path) is list and len(path) == 2:
             self.meta, self.elems = load_dataset(path[0])
             meta2, elem2 = load_dataset(path[1])
-            self.elems.extend(elem2)
+            self.elems.extend(elem2[0:len(elem2)//2])
         else:
             self.meta, self.elems = load_dataset(path)
         self.samples = self._create_samples()
