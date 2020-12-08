@@ -227,6 +227,7 @@ def _select_model(args):
     if args.model == 'baseline':
         return BaselineReader(args)
     else:
+        print(args.model)
         raise RuntimeError(f'model \'{args.model}\' not recognized!')
 
 
