@@ -166,18 +166,23 @@ class QADataset(Dataset):
                 token.lower() for (token, offset) in elem['context_tokens']
             ][:self.args.max_context_length]
 
-            print('\n***')
-            print('pre: ' + str(passage))
+            #print('\n***')
+            #print('pre: ' + str(passage))
 
             if '»' in passage:
-                per_idx = arr_idx = list(passage).index('»')
+                per_idx = arr_idx = passage.index('»')
                 per_found = False
                 while not per_found:
                     per_idx -= 1
-                    if passage[per_idx:per_idx+1] == '.':
+                    if passage[per_idx] == '.':
                         per_found = True
                 passage = passage[0:per_idx+1] + passage[arr_idx+1:]
-                print('post: ' + str(passage))
+                #print('$post arrow removal: ' + str(passage))
+
+            if 'cnn' in passage:
+                cnn_idx = passage.index('cnn')
+                passage = passage[cnn_idx+3:]
+                #print('$post cnn removal: ' + str(passage))
 
             # Each passage has several questions associated with it.
             # Additionally, each question has multiple possible answer spans.
