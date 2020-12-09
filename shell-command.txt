@@ -2,11 +2,13 @@ python3 main.py \
     --use_gpu \
     --model "baseline" \
     --model_path "baseline_small_squad.pt" \
-    --train_path "squad" \
-    --dev_path "squad" \
+    --train_path "exp" \
+    --dev_path "newsqa" \
     --output_path "baseline_small_squad_preds.txt" \
     --hidden_dim 128 \
     --bidirectional \
+    --epochs e \
+    --do_train \
     --do_test
 
 
@@ -14,11 +16,10 @@ python3 main.py \
     --use_gpu \
     --model "baseline" \
     --model_path "exp_model.pt" \
-    --train_path "exp" \
+    --train_path "datasets/newsqa_train.jsonl.gz" \
     --dev_path "datasets/newsqa_dev.jsonl.gz" \
     --output_path "exp_predictions.txt" \
     --hidden_dim 128 \
     --bidirectional \
-    --epochs 5 \
     --do_train \
     --do_test

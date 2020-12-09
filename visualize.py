@@ -22,7 +22,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     '--path',
     type=str,
-    default='datasets/squad_dev.jsonl.gz',
+    default='datasets/newsqa_dev.jsonl.gz',
     required=False,
     help='path to display samples from',
 )

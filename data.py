@@ -142,7 +142,7 @@ class QADataset(Dataset):
         if type(path) is list and len(path) == 2:
             self.meta, self.elems = load_dataset(path[0])
             meta2, elem2 = load_dataset(path[1])
-            self.elems.extend(elem2[0:len(elem2)//2])
+            self.elems.extend(elem2)
         else:
             self.meta, self.elems = load_dataset(path)
         self.samples = self._create_samples()
@@ -165,6 +165,19 @@ class QADataset(Dataset):
             passage = [
                 token.lower() for (token, offset) in elem['context_tokens']
             ][:self.args.max_context_length]
+
+            print('\n***')
+            print('pre: ' + passage)
+
+            if '»' in passage:
+                per_idx = arr_idx = list(passage).index('»')
+                per_found = False
+                while not per_found:
+                    per_idx -= 1
+                    if passage[per_idx:per_idx+1] == '.':
+                        per_found = True
+                passage = passage[0:per_idx+1] + passage[arr_idx+1:]
+                print('post: ' + passage)
 
             # Each passage has several questions associated with it.
             # Additionally, each question has multiple possible answer spans.
