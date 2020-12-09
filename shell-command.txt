@@ -2,12 +2,12 @@ python3 main.py \
     --use_gpu \
     --model "baseline" \
     --model_path "baseline_small_squad.pt" \
-    --train_path "exp" \
+    --train_path "newsqa" \
     --dev_path "newsqa" \
     --output_path "baseline_small_squad_preds.txt" \
     --hidden_dim 128 \
     --bidirectional \
-    --epochs e \
+    --epochs 3 \
     --do_train \
     --do_test
 
