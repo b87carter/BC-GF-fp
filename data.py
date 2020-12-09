@@ -142,6 +142,7 @@ class QADataset(Dataset):
         if type(path) is list and len(path) == 2:
             #self.curate_separated_data(path)
             self.curate_mixed_data(path)
+            self.elems = self.elems[0:500]
         else:
             self.meta, self.elems = load_dataset(path)
         self.samples = self._create_samples()
