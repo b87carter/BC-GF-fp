@@ -145,6 +145,8 @@ class QADataset(Dataset):
             self.elems = self.elems[0:500]
         else:
             self.meta, self.elems = load_dataset(path)
+            shuffle(self.elems)
+            self.elems = self.elems[0:10_000]
         self.samples = self._create_samples()
         self.tokenizer = None
         self.batch_size = args.batch_size if 'batch_size' in args else 1
