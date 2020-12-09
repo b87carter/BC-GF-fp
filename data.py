@@ -142,13 +142,13 @@ class QADataset(Dataset):
         if type(path) is list and len(path) == 2:
             #self.curate_separated_data(path)
             self.curate_mixed_data(path)
-            self.elems = self.elems[0:100]
+            self.elems = self.elems[0:10]
             print('num elems:')
             print(len(self.elems))
         else:
             self.meta, self.elems = load_dataset(path)
             shuffle(self.elems)
-            self.elems = self.elems[:1000]
+            self.elems = self.elems[:10]
             print('num elems:')
             print(len(self.elems))
         print('meta:')
