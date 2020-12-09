@@ -144,7 +144,6 @@ class QADataset(Dataset):
             self.curate_mixed_data(path)
             self.elems = self.elems[0:500]
         else:
-            print(path)
             self.meta, self.elems = load_dataset(path)
         self.samples = self._create_samples()
         self.tokenizer = None
@@ -347,13 +346,11 @@ class QADataset(Dataset):
         self.tokenizer = tokenizer
 
     def curate_separated_data(self, path):
-        print('separated')
         self.meta, self.elems = load_dataset(path[0])
         meta2, elem2 = load_dataset(path[1])
         self.elems.extend(elem2)
 
     def curate_mixed_data(self, path):
-        print('mixed')
         self.elems = []
         self.meta, elem1 = load_dataset(path[0])
         meta2, elem2 = load_dataset(path[1])
@@ -361,7 +358,7 @@ class QADataset(Dataset):
         shuffle(elem2)
         r = 3
         c = 0
-        while len(elem2) > 0:
+        while len(elem2) > 0 and len(elem1) > 0:
             if c < r:
                 self.elems.append(elem1.pop(0))
                 c += 1
