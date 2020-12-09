@@ -39,7 +39,7 @@ from utils import cuda, search_span_endpoints, unpack
 
 squad_train_path = "datasets/squad_train.jsonl.gz"
 squad_dev_path = "datasets/squad_dev.jsonl.gz"
-newsqa_train_path = "datasets/newsqa_dev.jsonl.gz"
+newsqa_train_path = "datasets/newsqa_train.jsonl.gz"
 newsqa_dev_path = "datasets/newsqa_dev.jsonl.gz"
 bio_path = "datasets/bioasq.jsonl.gz"
 
