@@ -143,10 +143,12 @@ class QADataset(Dataset):
             #self.curate_separated_data(path)
             self.curate_mixed_data(path)
             self.elems = self.elems[0:100]
+            print(len(self.elems))
         else:
             self.meta, self.elems = load_dataset(path)
             shuffle(self.elems)
-            self.elems = self.elems[:100]
+            self.elems = self.elems[:1000]
+            print(len(self.elems))
         self.samples = self._create_samples()
         self.tokenizer = None
         self.batch_size = args.batch_size if 'batch_size' in args else 1
