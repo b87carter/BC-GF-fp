@@ -43,6 +43,9 @@ newsqa_train_path = "datasets/newsqa_train.jsonl.gz"
 newsqa_dev_path = "datasets/newsqa_dev.jsonl.gz"
 bio_path = "datasets/bioasq.jsonl.gz"
 
+exp2_train_path =  "datasets/exp2_train.jsonl.gz"
+exp2_dev_path = "datasets/newsqa_dev.jsonl.gz"
+
 _TQDM_BAR_SIZE = 75
 _TQDM_LEAVE = False
 _TQDM_UNIT = ' batches'
@@ -477,6 +480,8 @@ def main(args):
         pass # have not yet written code to split bio set
     elif args.train_path == 'exp':
         train_dataset = QADataset(args, [squad_dev_path, newsqa_train_path])
+    elif args.train_path == 'exp2':
+        train_dataset = QADataset(args, exp2_train_path)
 
     if args.dev_path == 'squad':
         dev_dataset = QADataset(args, squad_dev_path)
@@ -486,6 +491,8 @@ def main(args):
         pass # have not yet written code to split bio set
     if args.dev_path == 'exp':
         dev_dataset = QADataset(args, [squad_dev_path, newsqa_dev_path])
+    elif args.dev_path == 'exp2':
+        dev_dataset = QADataset(args, exp2_dev_path)
 
     # Create vocabulary and tokenizer.
     vocabulary = Vocabulary(train_dataset.samples, args.vocab_size)
