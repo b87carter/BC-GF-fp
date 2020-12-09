@@ -140,8 +140,8 @@ class QADataset(Dataset):
     def __init__(self, args, path):
         self.args = args
         if type(path) is list and len(path) == 2:
-            self.curate_separated_data(path)
-            #self.curate_mixed_data(path)
+            #self.curate_separated_data(path)
+            self.curate_mixed_data(path)
         else:
             self.meta, self.elems = load_dataset(path)
         self.samples = self._create_samples()
