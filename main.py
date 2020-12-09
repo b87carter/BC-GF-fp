@@ -557,6 +557,8 @@ def main(args):
                 print()
                 break
 
+        torch.save(model.state_dict(), args.model_path)
+
     if args.do_test:
         # Write predictions to the output file. Use the printed command
         # below to obtain official EM/F1 metrics.
