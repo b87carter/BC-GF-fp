@@ -347,7 +347,6 @@ class QADataset(Dataset):
     def curate_separated_data(self, path):
         self.meta, self.elems = load_dataset(path[0])
         meta2, elem2 = load_dataset(path[1])
-        self.elems = self.elems[0:len(self.elems)//2]
         self.elems.extend(elem2)
 
     def curate_mixed_data(self, path):

@@ -476,7 +476,7 @@ def main(args):
     elif args.train_path == 'bioqa':
         pass # have not yet written code to split bio set
     elif args.train_path == 'exp':
-        train_dataset = QADataset(args, [squad_train_path, newsqa_train_path])
+        train_dataset = QADataset(args, [squad_dev_path, newsqa_train_path])
 
     if args.dev_path == 'squad':
         dev_dataset = QADataset(args, squad_dev_path)
