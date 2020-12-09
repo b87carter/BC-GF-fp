@@ -162,8 +162,6 @@ class QADataset(Dataset):
             A list of words (string).
         """
         samples = []
-        print('in createsamples: len elems')
-        print(len(self.elems))
         for elem in self.elems:
             # Unpack the context paragraph. Shorten to max sequence length.
             passage = [
