@@ -1,0 +1,21 @@
+1. train pretrained model (baseline_small_squad.pt) on newsqa
+python3 main.py \
+    --use_gpu \
+    --model "baseline" \
+    --model_path "baseline_small_squad.pt" \
+    --train_path "newsqa" \
+    --dev_path "newsqa" \
+    --output_path "baseline_small_squad_preds.txt" \
+    --hidden_dim 128 \
+    --bidirectional \
+    --epochs 5 \
+    --do_train \
+    --do_test
+
+2. lump squad and newsqa datasets together
+3. no 2 but shuffled
+4. (shuffle), squad dataset but insert newsqa example every fifth
+5. no 4 but shuffled
+6. 
+
+
