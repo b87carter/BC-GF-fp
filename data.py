@@ -140,9 +140,8 @@ class QADataset(Dataset):
     def __init__(self, args, path):
         self.args = args
         if type(path) is list and len(path) == 2:
-            self.meta, self.elems = load_dataset(path[0])
-            meta2, elem2 = load_dataset(path[1])
-            self.elems.extend(elem2)
+            #self.curate_separated_data(path)
+            self.curate_mixed_data(path)
         else:
             self.meta, self.elems = load_dataset(path)
         self.samples = self._create_samples()
@@ -174,7 +173,7 @@ class QADataset(Dataset):
                 per_found = False
                 while not per_found:
                     per_idx -= 1
-                    if passage[per_idx] == '.':
+                    if passage[per_idx] == '.' or per_idx == 0:
                         per_found = True
                 passage = passage[0:per_idx+1] + passage[arr_idx+1:]
                 #print('$post arrow removal: ' + str(passage))
@@ -344,6 +343,27 @@ class QADataset(Dataset):
             tokenizer: If `True`, shuffle examples. Default: `False`
         """
         self.tokenizer = tokenizer
+
+    def curate_separated_data(self, path):
+        self.meta, self.elems = load_dataset(path[0])
+        meta2, elem2 = load_dataset(path[1])
+        self.elems.extend(elem2)
+
+    def curate_mixed_data(self, path):
+        self.elems = []
+        self.meta, elem1 = load_dataset(path[0])
+        meta2, elem2 = load_dataset(path[1])
+        shuffle(elem1)
+        shuffle(elem2)
+        r = 5
+        c = 0
+        while len(elem2) > 0:
+            if c < r:
+                self.elems.append(elem1.pop(0))
+                c += 1
+            else:
+                self.elems.append(elem2.pop(0))
+                c = 0
     
     def __len__(self):
         return len(self.samples)
