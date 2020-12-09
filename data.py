@@ -143,12 +143,16 @@ class QADataset(Dataset):
             #self.curate_separated_data(path)
             self.curate_mixed_data(path)
             self.elems = self.elems[0:100]
+            print('num elems:')
             print(len(self.elems))
         else:
             self.meta, self.elems = load_dataset(path)
             shuffle(self.elems)
             self.elems = self.elems[:1000]
+            print('num elems:')
             print(len(self.elems))
+        print('meta:')
+        print()
         print(self.meta)
         self.samples = self._create_samples()
         self.tokenizer = None
@@ -165,6 +169,8 @@ class QADataset(Dataset):
             A list of words (string).
         """
         samples = []
+        print('in createsamples: len elems')
+        print(len(self.elems))
         for elem in self.elems:
             # Unpack the context paragraph. Shorten to max sequence length.
             passage = [
