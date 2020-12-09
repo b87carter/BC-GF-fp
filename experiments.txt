@@ -25,8 +25,22 @@ python3 main.py \
     --epochs 5 \
     --do_train \
     --do_test
-    
+
 3. no 2 but shuffled
+python3 main.py \
+    --use_gpu \
+    --model "baseline" \
+    --model_path "exp_model.pt" \
+    --train_path "exp" \
+    --dev_path "newsqa" \
+    --output_path "exp_preds.txt" \
+    --hidden_dim 128 \
+    --bidirectional \
+    --epochs 5 \
+    --do_train \
+    --do_test \
+    --shuffle_examples
+
 4. (shuffle), squad dataset but insert newsqa example every fifth
 5. no 4 but shuffled
 6. 
