@@ -355,7 +355,7 @@ class QADataset(Dataset):
         meta2, elem2 = load_dataset(path[1])
         shuffle(elem1)
         shuffle(elem2)
-        r = 3
+        r = 5
         c = 0
         while len(elem2) > 0 and len(elem1) > 0:
             if c < r:
