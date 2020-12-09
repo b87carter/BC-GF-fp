@@ -144,7 +144,7 @@ class QADataset(Dataset):
             self.curate_mixed_data(path)
             self.elems = self.elems[0:500]
         else:
-            print('single path')
+            print(path)
             self.meta, self.elems = load_dataset(path)
         self.samples = self._create_samples()
         self.tokenizer = None
