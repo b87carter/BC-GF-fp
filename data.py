@@ -167,7 +167,7 @@ class QADataset(Dataset):
             ][:self.args.max_context_length]
 
             print('\n***')
-            print('pre: ' + passage)
+            print('pre: ' + str(passage))
 
             if '»' in passage:
                 per_idx = arr_idx = list(passage).index('»')
@@ -177,7 +177,7 @@ class QADataset(Dataset):
                     if passage[per_idx:per_idx+1] == '.':
                         per_found = True
                 passage = passage[0:per_idx+1] + passage[arr_idx+1:]
-                print('post: ' + passage)
+                print('post: ' + str(passage))
 
             # Each passage has several questions associated with it.
             # Additionally, each question has multiple possible answer spans.
